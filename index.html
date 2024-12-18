@@ -12,28 +12,32 @@
       color: white;
       overflow-x: hidden;
     }
-  
+
     header {
       text-align: center;
       padding: 20px;
       background: rgba(0, 0, 0, 0.5);
+      position: relative;  /* Make sure it stays above snowflakes */
+      z-index: 1;
     }
-  
+
     header h1 {
-      font-size: 2.5rem;  /* Slightly smaller heading for mobile */
+      font-size: 3rem;
       text-shadow: 2px 2px 5px black;
     }
-  
+
     #countdown {
       font-size: 1.5rem;
       margin-top: 10px;
     }
-  
+
     .controls {
       text-align: center;
       margin: 20px;
+      position: relative;
+      z-index: 1;
     }
-  
+
     .controls button {
       padding: 10px 20px;
       margin: 10px;
@@ -44,26 +48,28 @@
       border-radius: 5px;
       cursor: pointer;
     }
-  
+
     .controls button:hover {
       background-color: #d43d3d;
     }
-  
+
     .controls input {
       width: 100%;
-      max-width: 300px;
+      max-width: 300px;  /* Limit max width for inputs */
     }
-  
+
     section {
-      padding: 50px 15px;
+      padding: 50px 15px;  /* Reduced padding for mobile */
       text-align: center;
+      position: relative;
+      z-index: 1;  /* Ensure content stays above snowflakes */
     }
-  
+
     .history h2, .activities h2, .form-section h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
-  
+
     form input, form textarea, form button {
       display: block;
       width: 90%;
@@ -72,17 +78,17 @@
       border-radius: 5px;
       border: none;
     }
-  
+
     form button {
       background: #ff4b4b;
       color: white;
       cursor: pointer;
     }
-  
+
     form button:hover {
       background: #d43d3d;
     }
-  
+
     .messages {
       margin-top: 30px;
       text-align: left;
@@ -90,32 +96,33 @@
       padding: 20px;
       border-radius: 10px;
     }
-  
+
     .message {
       margin-bottom: 15px;
       padding: 10px;
       background: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
     }
-  
+
     .message strong {
       color: #ffeb3b;
     }
-  
+
     .snowflake {
       position: absolute;
       top: -10px;
       font-size: 1rem;
       color: white;
       animation: fall linear infinite;
+      z-index: -1;  /* Snowflakes behind the content */
     }
-  
+
     @keyframes fall {
       to {
         transform: translateY(100vh);
       }
     }
-  
+
     #santaImage {
       position: fixed;
       top: 50%;
@@ -124,75 +131,75 @@
       display: none;
       z-index: 1000;
     }
-  
+
     #santaImage img {
       width: 50%;  /* Scale down the image for smaller screens */
       max-width: 400px;
       animation: bounce 1s infinite;
     }
-  
+
     @keyframes bounce {
       0% { transform: translate(-50%, -50%) translateY(0); }
       50% { transform: translate(-50%, -50%) translateY(-30px); }
       100% { transform: translate(-50%, -50%) translateY(0); }
     }
-  
+
     /* Media Queries for smaller screens */
     @media (max-width: 768px) {
       header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
-  
+
       .controls button {
         font-size: 0.9rem;
       }
-  
+
       .controls input {
         width: 80%;
       }
-  
+
       section {
         padding: 40px 15px;
       }
-  
+
       .history h2, .activities h2, .form-section h2 {
         font-size: 2rem;
       }
-  
+
       form input, form textarea, form button {
         width: 85%;
       }
-  
+
       #santaImage img {
         width: 60%;
       }
     }
-  
+
     @media (max-width: 480px) {
       header h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
-  
+
       .controls button {
         font-size: 0.8rem;
       }
-  
+
       .controls input {
         width: 75%;
       }
-  
+
       section {
         padding: 30px 15px;
       }
-  
+
       .history h2, .activities h2, .form-section h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
-  
+
       form input, form textarea, form button {
         width: 90%;
       }
-  
+
       #santaImage img {
         width: 70%;
       }
