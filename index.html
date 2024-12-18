@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Christmas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #ff4b4b, #4caf50);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    #countdown {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1rem;
+      background-color: #ff4b4b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #d43d3d;
+    }
+
+    .controls input {
+      width: 100%;
+      max-width: 300px;  /* Limit max width for inputs */
+    }
+
+    section {
+      padding: 50px 15px;  /* Reduced padding for mobile */
+      text-align: center;
+    }
+
+    .history h2, .activities h2, .form-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    form input, form textarea, form button {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    form button {
+      background: #ff4b4b;
+      color: white;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #d43d3d;
+    }
+
+    .messages {
+      margin-top: 30px;
+      text-align: left;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+    }
+
+    .message strong {
+      color: #ffeb3b;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      font-size: 1rem;
+      color: white;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    #santaImage {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      z-index: 1000;
+    }
+
+    #santaImage img {
+      width: 50%;  /* Scale down the image for smaller screens */
+      max-width: 400px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0% { transform: translate(-50%, -50%) translateY(0); }
+      50% { transform: translate(-50%, -50%) translateY(-30px); }
+      100% { transform: translate(-50%, -50%) translateY(0); }
+    }
+
+    /* Media Queries for smaller screens */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .controls button {
+        font-size: 0.9rem;
+      }
+
+      .controls input {
+        width: 80%;
+      }
+
+      section {
+        padding: 40px 15px;
+      }
+
+      .history h2, .activities h2, .form-section h2 {
+        font-size: 2rem;
+      }
+
+      form input, form textarea, form button {
+        width: 85%;
+      }
+
+      #santaImage img {
+        width: 60%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .controls button {
+        font-size: 0.8rem;
+      }
+
+      .controls input {
+        width: 75%;
+      }
+
+      section {
+        padding: 30px 15px;
+      }
+
+      .history h2, .activities h2, .form-section h2 {
+        font-size: 1.8rem;
+      }
+
+      form input, form textarea, form button {
+        width: 90%;
+      }
+
+      #santaImage img {
+        width: 70%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Player -->
+  <audio id="audioPlayer">
+    <source src="christmas-music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div class="controls">
+    <button onclick="document.getElementById('audioPlayer').play()">Play Music</button>
+    <button onclick="document.getElementById('audioPlayer').pause()">Pause Music</button>
+    <label for="volumeControl">Volume:</label>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" onchange="setVolume(this.value)" />
+  </div>
+  
+  <!-- Santa Image -->
+  <div id="santaImage">
+    <img src="santa.gif" alt="Santa Claus" />
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>🎄 Merry Christmas! 🎅</h1>
+    <div id="countdown">Loading countdown...</div>
+  </header>
+
+  <!-- History Section -->
+  <section class="history">
+    <h2>The History of Christmas</h2>
+    <p>Christmas is celebrated worldwide to commemorate the birth of Jesus Christ. It is a time of joy, sharing, and family gatherings. Over the centuries, many traditions such as decorating trees, exchanging gifts, and singing carols have become a part of the celebration.</p>
+  </section>
+
+  <!-- Activities Section -->
+  <section class="activities">
+    <h2>Christmas Activities</h2>
+    <ul>
+      <li>Decorating the Christmas tree</li>
+      <li>Singing carols</li>
+      <li>Exchanging gifts</li>
+      <li>Baking Christmas cookies</li>
+    </ul>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section">
+    <h2>Send Your Christmas Wishes</h2>
+    <form id="wishForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="messages" id="messages">
+      <h3>Messages:</h3>
+      <!-- User messages will appear here -->
+    </div>
+  </section>
+
+  <!-- Snow Animation -->
+  <script>
+    const countdown = document.getElementById("countdown");
+    const christmas = new Date("Dec 25, 2024 00:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = christmas - now;
+
+      if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Christmas! 🎄`;
+      } else {
+        countdown.textContent = "Merry Christmas! 🎅";
+      }
+    }, 1000);
+
+    function createSnowflakes() {
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.textContent = "❄";
+      snowflake.style.left = Math.random() * window.innerWidth + "px";
+      snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
+
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, 5000);
+    }
+
+    setInterval(createSnowflakes, 100);
+
+    // Handle Form Submission
+    const form = document.getElementById("wishForm");
+    const messagesDiv = document.getElementById("messages");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+      const newMessage = document.createElement("div");
+      newMessage.className = "message";
+      newMessage.innerHTML = `<strong>${name}</strong>: ${message}`;
+      messagesDiv.appendChild(newMessage);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
